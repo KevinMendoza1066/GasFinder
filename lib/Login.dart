@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gas_finder/Registro.dart';
+import 'package:gas_finder/RestorePassword.dart';
 import 'package:gas_finder/Start.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -108,6 +110,10 @@ class _LoginState extends State<Login> {
                             TextButton(
                               onPressed: () {
                                 // Lógica para el enlace de texto "Olvidé mi contraseña"
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => Restore()
+                                    ));
                               },
                               child: Text(
                                 'Olvidé mi contraseña',
@@ -156,6 +162,10 @@ class _LoginState extends State<Login> {
                         TextButton(
                           onPressed: () {
                             // Lógica para el enlace de texto "Ya tienes cuenta ? Registrarme ahora"
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Registro()
+                            ));
                           },
                           child: Text(
                             '¿No tienes una cuenta? Regístrate ahora',
