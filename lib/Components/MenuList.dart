@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gas_finder/PrecioActual.dart';
+import 'package:gas_finder/VerGasolinera.dart';
 import '../Start.dart';
 import '../CercaDeMi.dart';
-import '../AcercaDe.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:gas_finder/MiPerfil.dart';
 
 class ButtonMenu extends StatelessWidget{
 
@@ -70,13 +70,13 @@ class MenuList extends StatelessWidget{
         SizedBox(height: 20,),
         ButtonMenu("Cerca de Mi ",CercadeMi(),Icons.location_pin,principalScreen==MenuItems[1]),
         SizedBox(height: 20,),
-        ButtonMenu("Ver Gasolineras ",Start(),Icons.search,principalScreen==MenuItems[2]),
+        ButtonMenu("Ver Gasolineras ",VerGasolinera(),Icons.search,principalScreen==MenuItems[2]),
         SizedBox(height: 20,),
-        ButtonMenu("Precio Actual ",Start(),Icons.price_change,principalScreen==MenuItems[3]),
+        ButtonMenu("Precio Actual ",PrecioActual(),Icons.price_change,principalScreen==MenuItems[3]),
         SizedBox(height: 20,),
-        ButtonMenu("Mi Perfil", MiPerfil(), Icons.person, principalScreen == MenuItems[4]),
+        ButtonMenu("Mi Perfil ",Start(),Icons.person,principalScreen==MenuItems[4]),
         SizedBox(height: 20,),
-        ButtonMenu("Acerca De", AcercaDeScreen(), Icons.info, principalScreen == MenuItems[5]),
+        ButtonMenu("Acerca De",Start(),Icons.info,principalScreen==MenuItems[5]),
       ],
     );
   }
