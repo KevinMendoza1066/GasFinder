@@ -4,6 +4,7 @@ import 'package:gas_finder/Registro.dart';
 import 'package:gas_finder/RestorePassword.dart';
 import 'package:gas_finder/Start.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:animate_do/animate_do.dart';
 
 
 class Login extends StatefulWidget {
@@ -26,7 +27,7 @@ class _LoginState extends State<Login> {
       theme: ThemeData(
         textTheme: GoogleFonts.senTextTheme(),
       ),
-      home: Scaffold(
+      home: FadeInDown(child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Container(
           width: double.infinity,
@@ -183,7 +184,7 @@ class _LoginState extends State<Login> {
             ],
           ),
         ),
-      ),
+      )),
     );
   }
 }
