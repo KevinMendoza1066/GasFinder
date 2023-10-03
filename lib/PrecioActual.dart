@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'Components/PreciosTabBar.dart';
+
 class PrecioActual extends StatelessWidget {
   const PrecioActual({super.key});
 
@@ -18,7 +20,7 @@ class PrecioActual extends StatelessWidget {
           title: Text('Precio Actual'),
         ),
         backgroundColor: Color(0xffe3f2fd),
-        body: DrawerMenu(),
+        body: PreciosTabBar(),//DrawerMenu(),
 
       ),
     );

@@ -20,6 +20,8 @@ dependencies:
   geolocator: ^10.0.0
   # for animations
   animate_do: ^3.0.2
+  #for api
+  http: ^1.1.0
 
 dev_dependencies:
   flutter_test:
