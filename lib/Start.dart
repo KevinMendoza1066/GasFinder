@@ -4,6 +4,7 @@ import 'package:flutter/animation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'Components/MenuList.dart';
+import 'package:animate_do/animate_do.dart';
 
 class Start extends StatelessWidget {
   @override
@@ -14,7 +15,7 @@ class Start extends StatelessWidget {
         textTheme: GoogleFonts.senTextTheme(),
       ),
       home: Scaffold(
-        body: DrawerMenu(),
+        body: FadeInDown(child:DrawerMenu()),
       ),
     );
   }
