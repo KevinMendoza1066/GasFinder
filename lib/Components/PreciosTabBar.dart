@@ -9,24 +9,16 @@ class PreciosTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(useMaterial3: true),
-      home:  BarPreciosLista(),
-    );
+    return BarPreciosLista();
   }
 }
-
-
-
 
 class BarPreciosLista extends StatelessWidget {
 
   Future<List<PreciosModel>> PreciosLista = GetPrecios();
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Center(
+    return  Center(
           child: FutureBuilder<List<PreciosModel>>(
             future: PreciosLista,
             builder: (context, snapshot) {
@@ -36,13 +28,11 @@ class BarPreciosLista extends StatelessWidget {
               } else if (snapshot.hasError) {
                 return Text("${snapshot.error}");
               }
-
               // Por defecto, muestra un loading spinner
               return CircularProgressIndicator();
             },
           ),
-        ),
-      ),
-    );
+        );
+
   }
 }
