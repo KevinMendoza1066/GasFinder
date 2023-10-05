@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "952756363659",
+    "firebase_url": "https://gasfinder-be650-default-rtdb.firebaseio.com",
+    "project_id": "gasfinder-be650",
+    "storage_bucket": "gasfinder-be650.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952756363659:android:3f9922ecd4c1d5a9bf4f8e",
+        "android_client_info": {
+          "package_name": "com.example.gas_finder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "952756363659-5hq6v3muvat4fi2915r2q6ui4ncq675m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKNNkPut3dsszJ6H_Jyvx8wDbiGN1efxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "952756363659-5hq6v3muvat4fi2915r2q6ui4ncq675m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

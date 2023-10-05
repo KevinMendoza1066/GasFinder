@@ -8,7 +8,6 @@ Future<List<PreciosModel>> GetPrecios() async {
     Uri.parse('http://gasfinderapi.somee.com/GasFinder/GetCurrentPrices'),
   );
   if (response.statusCode == 200) {
-    print(response.body);
     final List<dynamic> jsonResponse = json.decode(response.body);
     List<PreciosModel> preciosList = jsonResponse.map((json) => PreciosModel.fromJson(json)).toList();
     return preciosList;

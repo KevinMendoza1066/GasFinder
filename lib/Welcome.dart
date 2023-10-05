@@ -1,14 +1,27 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gas_finder/push_provider/push_notification_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gas_finder/Login.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-void main() {
+void main() async{
+  //inicializando las push
   runApp(Welcome());
+  await Firebase.initializeApp();
+  final PushNotification _pushNotification = new PushNotification();
+  await _pushNotification.initNotification();
 }
-
-class Welcome extends StatelessWidget {
+class Welcome extends StatefulWidget {
+  @override
+  _WelcomeState createState() => _WelcomeState();
+}
+class _WelcomeState extends State<Welcome> {
+  @override
+  void initState() {
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -35,6 +48,7 @@ class MyCarousel extends StatefulWidget {
 class _MyCarouselState extends State<MyCarousel> {
   CarouselController _carouselController = CarouselController();
   int currentPage = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

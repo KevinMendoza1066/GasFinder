@@ -23,7 +23,6 @@ class BarPreciosLista extends StatelessWidget {
             future: PreciosLista,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-
                 return PreciosTab(ListPrecioModel: snapshot.data,);
               } else if (snapshot.hasError) {
                 return Text("${snapshot.error}");
