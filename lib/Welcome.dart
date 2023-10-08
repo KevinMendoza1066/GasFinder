@@ -5,8 +5,13 @@ import 'package:gas_finder/push_provider/push_notification_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gas_finder/Login.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'firebase_options.dart';
 
 void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   //inicializando las push
   runApp(Welcome());
   await Firebase.initializeApp();

@@ -4,8 +4,9 @@ import 'package:gas_finder/Registro.dart';
 import 'package:gas_finder/RestorePassword.dart';
 import 'package:gas_finder/Start.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:animate_do/animate_do.dart';
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'Services/Firebase_services.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -13,8 +14,17 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  final FirebaseAuthService auth = FirebaseAuthService();
+
+  TextEditingController correocontroller = TextEditingController(text: "");
+  TextEditingController passwordcontroller = TextEditingController(text: "");
+
+  @override
+  void dispose() {
+    correocontroller.dispose();
+    passwordcontroller.dispose();
+    super.dispose();
+  }
 
   String errorMessage = "";
 
@@ -27,7 +37,7 @@ class _LoginState extends State<Login> {
       theme: ThemeData(
         textTheme: GoogleFonts.senTextTheme(),
       ),
-      home: FadeInDown(child: Scaffold(
+      home: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Container(
           width: double.infinity,
@@ -65,9 +75,9 @@ class _LoginState extends State<Login> {
                     child: Column(
                       children: <Widget>[
                         TextFormField(
-                          controller: usernameController,
+                          controller: correocontroller,
                           decoration: InputDecoration(
-                            labelText: 'Nombre',
+                            labelText: 'Correo',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.all(Radius.circular(10.0)),
                             ),
@@ -79,7 +89,7 @@ class _LoginState extends State<Login> {
                         ),
                         SizedBox(height: 40,),
                         TextFormField(
-                          controller: passwordController,
+                          controller: passwordcontroller,
                           obscureText: true,
                           decoration: InputDecoration(
                             labelText: 'Contraseña',
@@ -129,19 +139,7 @@ class _LoginState extends State<Login> {
                         SizedBox(height: 40),
                         ElevatedButton(
                           onPressed: () {
-                            if (usernameController.text == 'admin' &&
-                                passwordController.text == 'admin') {
-                              // Aquí puedes navegar a la página de inicio
-                              Navigator.of(context).pushReplacement(
-                                CupertinoPageRoute(
-                                  builder: (context) => Start(),
-                                ),
-                              );
-                            } else {
-                              setState(() {
-                                errorMessage = "Credenciales incorrectas";
-                              });
-                            }
+                            SignIn();
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Color(0xffeebd3d),
@@ -156,17 +154,17 @@ class _LoginState extends State<Login> {
                         Text(
                           errorMessage,
                           style: TextStyle(
-                            color: Colors.red,
-                            fontSize: 15
+                              color: Colors.red,
+                              fontSize: 15
                           ),
                         ),
                         TextButton(
                           onPressed: () {
                             // Lógica para el enlace de texto "Ya tienes cuenta ? Registrarme ahora"
                             Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => Registro()
-                            ));
+                                context,
+                                MaterialPageRoute(builder: (context) => Registro()
+                                ));
                           },
                           child: Text(
                             '¿No tienes una cuenta? Regístrate ahora',
@@ -184,7 +182,21 @@ class _LoginState extends State<Login> {
             ],
           ),
         ),
-      )),
+      ),
     );
+  }
+
+  void SignIn() async{
+    String Correo = correocontroller.text;
+    String Password = passwordcontroller.text;
+
+    User? user = await auth.SignInWithEmailAndPassword(Correo, Password);
+
+    if (user != null){
+      print("Se inició sesión correctamente");
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Start()));
+    } else{
+      print("Error! Algo ocurrió mal");
+    }
   }
 }
