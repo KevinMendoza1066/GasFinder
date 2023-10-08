@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'Login.dart';
 
 class MiPerfil extends StatelessWidget {
   @override
@@ -42,7 +45,8 @@ class MiPerfil extends StatelessWidget {
             SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                // ************Agrega aquí la lógica para cerrar sesión
+                FirebaseAuth.instance.signOut();
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
               },
               child: Text('Cerrar Sesión'),
             ),

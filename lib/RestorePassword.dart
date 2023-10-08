@@ -1,8 +1,9 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gas_finder/Login.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'Services/Firebase_services.dart';
 
 class Restore extends StatefulWidget{
   @override
@@ -10,6 +11,17 @@ class Restore extends StatefulWidget{
 }
 
 class _RestoreState extends State<Restore>{
+
+  final FirebaseAuthService auth = FirebaseAuthService();
+
+  TextEditingController correocontroller = TextEditingController(text: "");
+
+  @override
+  void dispose() {
+    correocontroller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -55,6 +67,7 @@ class _RestoreState extends State<Restore>{
                     child: Column(
                       children: <Widget>[
                         TextFormField(
+                          controller: correocontroller,
                           decoration: InputDecoration(
                             labelText: 'Correo Electrónico',
                             border: OutlineInputBorder(
@@ -69,11 +82,7 @@ class _RestoreState extends State<Restore>{
                         SizedBox(height: 40,),
                         ElevatedButton(
                           onPressed: () {
-                            Navigator.of(context).pushReplacement(
-                              CupertinoPageRoute(
-                                builder: (context) => Login(),
-                              ),
-                            );
+                            ResetPass();
                           },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Color(0xffeebd3d),
@@ -95,5 +104,34 @@ class _RestoreState extends State<Restore>{
       )
       )
       );
+  }
+
+  void ResetPass() async{
+    await auth.ResetPassword(correocontroller.text);
+    _mostrarVentanaEmergente(context);
+  }
+  void _mostrarVentanaEmergente(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Correo enviado'),
+          content: Text('El correo ha sido enviado . Verifique su bandeja de entrada'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                // Cierra la ventana emergente
+                Navigator.of(context).pop();
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Login()
+                    ));
+              },
+              child: Text('Aceptar'),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
